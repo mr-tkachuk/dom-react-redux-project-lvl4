@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "MySlack",
   "scripts": {
-    "start": "npx start-server -s ./frontend/build",
+    "start": "npx start-server",
+    "start:with_static": "npx start-server -s ./frontend/build",
     "build": "npm run build --prefix frontend",
     "test": "npm run test --prefix frontend",
     "postinstall": "cd frontend && npm ci"
@@ -11,6 +12,8 @@
   "author": "mrtkachuk",
   "license": "ISC",
   "dependencies": {
-    "@hexlet/chat-server": "^2.0.0"
+    "@hexlet/chat-server": "^2.0.0",
+    "@reduxjs/toolkit": "^2.2.1",
+    "react-redux": "^9.1.0"
   }
 }

@@ -1,8 +1,19 @@
 import { Card } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import login from './login.jpeg';
-import LoginForm from '../features/LoginForm';
+import LoginForm from '../features/LoginFrom/LoginForm';
+import { authDataSelector } from '../entities/User/selectors';
 
 export default function Login() {
+  const authData = useSelector(authDataSelector);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (authData) {
+      navigate('/');
+    }
+  }, [authData]);
   return (
     <main className="d-flex justify-content-center align-items-center h-100">
       <Card className="shadow-sm col-12 col-md-8 col-xxl-6">

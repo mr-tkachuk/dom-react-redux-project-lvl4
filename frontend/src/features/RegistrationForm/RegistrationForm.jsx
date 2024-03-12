@@ -20,7 +20,7 @@ export default function RegistrationForm() {
     >
       {
         ({
-          handleSubmit, handleChange, values, touched, errors,
+          handleSubmit, handleChange, values, errors,
         }) => (
           <Form
             noValidate
@@ -41,12 +41,11 @@ export default function RegistrationForm() {
                   name="name"
                   placeholder="Имя пользователя"
                   value={values.name}
-                  isValid={touched.name && !errors.name}
                   isInvalid={!!errors.name}
                   onChange={handleChange}
                   autoComplete="username"
                 />
-                <Form.Control.Feedback tooltip>{errors.name}</Form.Control.Feedback>
+                <Form.Control.Feedback tooltip type="invalid">{errors.name}</Form.Control.Feedback>
               </FloatingLabel>
             </Form.Group>
             <Form.Group

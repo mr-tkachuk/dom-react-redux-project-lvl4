@@ -8,6 +8,10 @@ module.exports = {
     'airbnb',
   ],
   overrides: [
+    {
+      files: ['src/**/*Slice.js'],
+      rules: { 'no-param-reassign': ['error', { props: false }] },
+    },
   ],
   parserOptions: {
     ecmaVersion: 'latest',
@@ -19,5 +23,6 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-uses-react': 'off',
+    'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
   },
 };

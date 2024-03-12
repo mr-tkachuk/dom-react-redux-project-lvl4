@@ -1,6 +1,6 @@
 import { Card } from 'react-bootstrap';
 import signup from './signup.jpg';
-import RegistrationForm from '../features/RegistrationForm';
+import RegistrationForm from '../features/RegistrationForm/RegistrationForm';
 
 export default function Registration() {
   return (
