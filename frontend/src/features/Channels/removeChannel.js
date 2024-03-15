@@ -1,18 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const postMessage = createAsyncThunk(
-  'messages/postMessage',
-  async (message, thunkAPI) => {
+const removeChannel = createAsyncThunk(
+  'channels/removeChannel',
+  async (channel, thunkAPI) => {
     const { extra, rejectWithValue } = thunkAPI;
     try {
-      const response = await extra.api.post('/messages', message);
+      const response = await extra.api.delete(`/channels/${channel}`);
       if (!response.data) {
         throw new Error('Случилась ошибка');
       }
-      return response.data;
+      return channel.id;
     } catch (e) {
       return rejectWithValue('Случилась ошибка');
     }
   },
 );
-export default postMessage;
+
+export default removeChannel;

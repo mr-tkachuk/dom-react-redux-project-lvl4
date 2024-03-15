@@ -1,17 +1,18 @@
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import signUp from './signUp';
 
 export default function RegistrationForm() {
   const schema = yup.object().shape({
-    name: yup.string().required('Обязательное поле'),
+    name: yup.string().required('Обязательное поле').min(3, 'От 3 до 20 символов').max(20, 'От 3 до 20 символов'),
     password: yup.string().min(6, 'Не менее 6 символов').required('Обязательное поле'),
     confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Пароли должны совпадать').required('Обязательное поле'),
   });
 
   const dispatch = useDispatch();
+  const error = useSelector((state) => state.registrationForm.error);
   return (
     <Formik
       validationSchema={schema}
@@ -48,11 +49,11 @@ export default function RegistrationForm() {
                   name="name"
                   placeholder="Имя пользователя"
                   value={values.name}
-                  isInvalid={touched.name && !!errors.name}
+                  isInvalid={(touched.name && !!errors.name) || error}
                   onChange={handleChange}
                   autoComplete="username"
                 />
-                <Form.Control.Feedback tooltip type="invalid">{errors.name}</Form.Control.Feedback>
+                <Form.Control.Feedback tooltip type="invalid">{errors.name || error}</Form.Control.Feedback>
               </FloatingLabel>
             </Form.Group>
             <Form.Group

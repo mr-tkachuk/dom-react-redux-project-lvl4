@@ -15,8 +15,8 @@ const signUp = createAsyncThunk(
       }
       return response.data;
     } catch (e) {
-      if (e.response.status === 401) {
-        return rejectWithValue('Неверные имя пользователя или пароль');
+      if (e.response.status === 409) {
+        return rejectWithValue('Такой пользователь уже существует');
       }
       return rejectWithValue('Случилась ошибка');
     }

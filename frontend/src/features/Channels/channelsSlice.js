@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import getChannels from './getChannels';
+import postChannel from './postChannel';
 
 const initialState = {
   channels: [],
-  isLoading: false,
   active: null,
 };
 
@@ -14,21 +14,43 @@ export const channelsSlice = createSlice({
     setActive: (state, action) => {
       state.active = action.payload;
     },
+    addChannel: (state, action) => {
+      if (state.channels.map(({ id }) => id).includes(action.payload.id)) return;
+      state.channels.push(action.payload);
+    },
+    removeChannel: (state, action) => {
+      state.channels = state.channels.filter(({ id }) => id !== action.payload);
+      if (state.active.id === action.payload) {
+        [state.active] = state.channels;
+      }
+    },
+    updateChannel: (state, action) => {
+      if (state.active.id === action.payload.id) {
+        state.active = action.payload;
+      }
+      const index = state.channels.findIndex(({ id }) => id === action.payload.id);
+      state.channels[index] = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getChannels.pending, (state) => {
         state.error = undefined;
-        state.isLoading = true;
       })
       .addCase(getChannels.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.channels = action.payload;
-        // eslint-disable-next-line prefer-destructuring
-        state.active = action.payload[0];
+        [state.active] = action.payload;
       })
       .addCase(getChannels.rejected, (state, action) => {
-        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(postChannel.pending, (state) => {
+        state.error = undefined;
+      })
+      .addCase(postChannel.fulfilled, (state, action) => {
+        state.active = action.payload;
+      })
+      .addCase(postChannel.rejected, (state, action) => {
         state.error = action.payload;
       });
   },

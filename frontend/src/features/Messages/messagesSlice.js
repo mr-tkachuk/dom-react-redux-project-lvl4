@@ -1,10 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import getMessages from './getMessages';
-import postMessage from './postMessage';
 
 const initialState = {
   messages: [],
-  isLoading: false,
 };
 
 export const messagesSlice = createSlice({
@@ -15,30 +13,19 @@ export const messagesSlice = createSlice({
       if (state.messages.map(({ id }) => id).includes(action.payload.id)) return;
       state.messages.push(action.payload);
     },
+    removeMessagesByChannel: (state, action) => {
+      state.messages = state.messages.filter(({ channelId }) => channelId !== action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getMessages.pending, (state) => {
         state.error = undefined;
-        state.isLoading = true;
       })
       .addCase(getMessages.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.messages = action.payload;
       })
       .addCase(getMessages.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(postMessage.pending, (state) => {
-        state.error = undefined;
-        state.isLoading = true;
-      })
-      .addCase(postMessage.fulfilled, (state) => {
-        state.isLoading = false;
-      })
-      .addCase(postMessage.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.payload;
       });
   },

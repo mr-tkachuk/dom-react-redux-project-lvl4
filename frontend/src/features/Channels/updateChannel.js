@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const postMessage = createAsyncThunk(
-  'messages/postMessage',
-  async (message, thunkAPI) => {
+const updateChannel = createAsyncThunk(
+  'channels/updateChannel',
+  async ({ data, id }, thunkAPI) => {
     const { extra, rejectWithValue } = thunkAPI;
     try {
-      const response = await extra.api.post('/messages', message);
+      const response = await extra.api.patch(`/channels/${id}`, data);
       if (!response.data) {
         throw new Error('Случилась ошибка');
       }
@@ -15,4 +15,5 @@ const postMessage = createAsyncThunk(
     }
   },
 );
-export default postMessage;
+
+export default updateChannel;
