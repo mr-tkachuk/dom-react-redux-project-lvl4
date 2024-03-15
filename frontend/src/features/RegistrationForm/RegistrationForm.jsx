@@ -1,6 +1,8 @@
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { useDispatch } from 'react-redux';
+import signUp from './signUp';
 
 export default function RegistrationForm() {
   const schema = yup.object().shape({
@@ -8,10 +10,15 @@ export default function RegistrationForm() {
     password: yup.string().min(6, 'Не менее 6 символов').required('Обязательное поле'),
     confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Пароли должны совпадать').required('Обязательное поле'),
   });
+
+  const dispatch = useDispatch();
   return (
     <Formik
       validationSchema={schema}
-      onSubmit={console.log}
+      onSubmit={(data) => {
+        const { name, password } = data;
+        dispatch(signUp({ username: name, password }));
+      }}
       initialValues={{
         name: '',
         password: '',
@@ -20,7 +27,7 @@ export default function RegistrationForm() {
     >
       {
         ({
-          handleSubmit, handleChange, values, errors,
+          handleSubmit, handleChange, values, errors, touched,
         }) => (
           <Form
             noValidate
@@ -41,7 +48,7 @@ export default function RegistrationForm() {
                   name="name"
                   placeholder="Имя пользователя"
                   value={values.name}
-                  isInvalid={!!errors.name}
+                  isInvalid={touched.name && !!errors.name}
                   onChange={handleChange}
                   autoComplete="username"
                 />
@@ -61,7 +68,7 @@ export default function RegistrationForm() {
                   placeholder="Пароль"
                   value={values.password}
                   onChange={handleChange}
-                  isInvalid={!!errors.password}
+                  isInvalid={touched.password && !!errors.password}
                   autoComplete="new-password"
                   required
                 />
@@ -82,7 +89,7 @@ export default function RegistrationForm() {
                   name="confirmPassword"
                   placeholder="Повторите пароль"
                   value={values.confirmPassword}
-                  isInvalid={!!errors.confirmPassword}
+                  isInvalid={touched.confirmPassword && !!errors.confirmPassword}
                   onChange={handleChange}
                   autoComplete="new-password"
                   required

@@ -24,5 +24,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-uses-react': 'off',
     'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
+    'react/prop-types': 'off',
   },
 };

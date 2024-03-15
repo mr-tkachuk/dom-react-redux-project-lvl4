@@ -1,4 +1,4 @@
-import { Card } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -15,7 +15,7 @@ export default function Login() {
     }
   }, [authData]);
   return (
-    <main className="d-flex justify-content-center align-items-center h-100">
+    <Container className="d-flex justify-content-center align-items-center h-100" fluid>
       <Card className="shadow-sm col-12 col-md-8 col-xxl-6">
         <Card.Body className="row p-5">
           <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
@@ -28,6 +28,6 @@ export default function Login() {
           <Card.Link href="/signup">Регистрация</Card.Link>
         </Card.Footer>
       </Card>
-    </main>
+    </Container>
   );
 }

@@ -1,5 +1,5 @@
 import { Container } from 'react-bootstrap';
-import Header from '../widgets/Header';
+import Header from '../widgets/Header/Header';
 
 export default function NotFound() {
   return (

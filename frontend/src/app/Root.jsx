@@ -1,8 +1,7 @@
 import { Outlet } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import Header from '../widgets/Header';
+import Header from '../widgets/Header/Header';
 import { userActions } from '../entities/User/userSlice';
 import { isMountedSelector } from '../entities/User/selectors';
 
@@ -17,11 +16,9 @@ export default function Root() {
 
     isMounted
         && (
-        <div className="vh-100">
+        <div className="d-flex flex-column h-100">
           <Header />
-          <Container className="h-100">
-            <Outlet />
-          </Container>
+          <Outlet />
         </div>
         )
 

@@ -1,16 +1,20 @@
 import axios from 'axios';
+import { io } from 'socket.io-client';
 import { API_BASE_URL, AUTHORIZATION_DATA } from '../const/const';
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 5000,
   withCredentials: true,
 });
 
 api.interceptors.request.use((config) => {
+  const authData = JSON.parse(localStorage.getItem(AUTHORIZATION_DATA));
+  if (authData?.token) {
   // eslint-disable-next-line no-param-reassign
-  config.headers.Authorization = `Bearer ${localStorage.getItem(AUTHORIZATION_DATA)}`;
+    config.headers.Authorization = `Bearer ${authData.token}`;
+  }
   return config;
 });
 
-export default api;
+export const socket = io();

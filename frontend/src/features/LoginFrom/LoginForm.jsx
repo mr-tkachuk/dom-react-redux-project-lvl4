@@ -15,7 +15,9 @@ export default function LoginForm() {
   return (
     <Formik
       validationSchema={schema}
-      onSubmit={(data) => dispatch(loginByUsername(data))}
+      onSubmit={(data) => {
+        dispatch(loginByUsername(data));
+      }}
       initialValues={{
         username: '',
         password: '',
