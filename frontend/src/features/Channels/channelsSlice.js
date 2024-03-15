@@ -24,6 +24,7 @@ export const channelsSlice = createSlice({
       .addCase(getChannels.fulfilled, (state, action) => {
         state.isLoading = false;
         state.channels = action.payload;
+        // eslint-disable-next-line prefer-destructuring
         state.active = action.payload[0];
       })
       .addCase(getChannels.rejected, (state, action) => {

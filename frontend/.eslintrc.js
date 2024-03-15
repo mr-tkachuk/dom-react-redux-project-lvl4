@@ -25,5 +25,6 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
     'react/prop-types': 'off',
+    'import/prefer-default-export': 'warn',
   },
 };
