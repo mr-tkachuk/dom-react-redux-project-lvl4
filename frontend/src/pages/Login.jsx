@@ -1,7 +1,8 @@
 import { Card, Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import login from './login.jpeg';
 import LoginForm from '../features/LoginFrom/LoginForm';
 import { authDataSelector } from '../entities/User/selectors';
@@ -14,6 +15,7 @@ export default function Login() {
       navigate('/');
     }
   }, [authData]);
+  const { t } = useTranslation();
   return (
     <Container className="d-flex justify-content-center align-items-center h-100" fluid>
       <Card className="shadow-sm col-12 col-md-8 col-xxl-6">
@@ -24,8 +26,10 @@ export default function Login() {
           <LoginForm />
         </Card.Body>
         <Card.Footer className="d-flex justify-content-center gap-2 p-4">
-          <span>Нет аккаунта?</span>
-          <Card.Link href="/signup">Регистрация</Card.Link>
+          <span>{ t('noAccount') }</span>
+          <Link to="/signup">
+            {t('signUp')}
+          </Link>
         </Card.Footer>
       </Card>
     </Container>

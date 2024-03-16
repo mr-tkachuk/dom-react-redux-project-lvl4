@@ -23,7 +23,6 @@ export default function Chat() {
         </Col>
         <Col className="p-0 h-100">
           <Messages channel={activeChannel} />
-          <div>Форма</div>
         </Col>
       </Row>
     </Container>

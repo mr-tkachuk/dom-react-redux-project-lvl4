@@ -2,13 +2,15 @@ import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import signUp from './signUp';
 
 export default function RegistrationForm() {
+  const { t } = useTranslation();
   const schema = yup.object().shape({
-    name: yup.string().required('Обязательное поле').min(3, 'От 3 до 20 символов').max(20, 'От 3 до 20 символов'),
-    password: yup.string().min(6, 'Не менее 6 символов').required('Обязательное поле'),
-    confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Пароли должны совпадать').required('Обязательное поле'),
+    name: yup.string().required(t('required')).min(3, t('symbolsCount')).max(20, t('symbolsCount')),
+    password: yup.string().min(6, t('passwordMinimum')).required(t('required')),
+    confirmPassword: yup.string().oneOf([yup.ref('password'), null], t('passConfirm')).required(t('required')),
   });
 
   const dispatch = useDispatch();
@@ -35,19 +37,19 @@ export default function RegistrationForm() {
             onSubmit={handleSubmit}
             className="col-12 col-md-6 mt-3 mt-mb-0"
           >
-            <h1 className="text-center mb-4">Регистрация</h1>
+            <h1 className="text-center mb-4">{t('signUp')}</h1>
             <Form.Group
               controlId="sign-up-name"
               className="position-relative mb-3"
             >
               <FloatingLabel
-                label="Имя пользователя"
+                label={t('username')}
               >
                 <Form.Control
                   autoFocus
                   type="text"
                   name="name"
-                  placeholder="Имя пользователя"
+                  placeholder={t('username')}
                   value={values.name}
                   isInvalid={(touched.name && !!errors.name) || error}
                   onChange={handleChange}
@@ -61,12 +63,12 @@ export default function RegistrationForm() {
               className="position-relative mb-3"
             >
               <FloatingLabel
-                label="Пароль"
+                label={t('password')}
               >
                 <Form.Control
                   type="password"
                   name="password"
-                  placeholder="Пароль"
+                  placeholder={t('password')}
                   value={values.password}
                   onChange={handleChange}
                   isInvalid={touched.password && !!errors.password}
@@ -83,12 +85,12 @@ export default function RegistrationForm() {
               className="position-relative mb-3"
             >
               <FloatingLabel
-                label="Повторите пароль"
+                label={t('confirmPassword')}
               >
                 <Form.Control
                   type="password"
                   name="confirmPassword"
-                  placeholder="Повторите пароль"
+                  placeholder={t('confirmPassword')}
                   value={values.confirmPassword}
                   isInvalid={touched.confirmPassword && !!errors.confirmPassword}
                   onChange={handleChange}
@@ -101,7 +103,7 @@ export default function RegistrationForm() {
               </FloatingLabel>
             </Form.Group>
             <Button className="w-100 mb-3" variant="outline-primary" type="submit">
-              Зарегистрироваться
+              {t('toSignUp')}
             </Button>
           </Form>
         )

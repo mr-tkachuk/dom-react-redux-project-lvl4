@@ -3,6 +3,7 @@ import {
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import getChannels from './getChannels';
 import { activeSelector, channelsSelector } from './selectors';
 import ChannelsList from '../../entities/ChannelList/ChannelsList';
@@ -19,11 +20,11 @@ export default function Channels() {
   useEffect(() => {
     dispatch(getChannels());
   }, []);
-
+  const { t } = useTranslation();
   return (
     <>
       <div className="d-flex mt-1 justify-content-between align-items-center mb-2 ps-4 pe-2 p-4">
-        <b>Каналы</b>
+        <b>{t('channels')}</b>
         <Button
           variant="outline-primary"
           className="p-1"
@@ -44,7 +45,7 @@ export default function Channels() {
         centered
       >
         <Modal.Header className="h4" closeButton>
-          Добавить канал
+          {t('addChannel')}
         </Modal.Header>
         <Modal.Body>
           <ChannelsForm

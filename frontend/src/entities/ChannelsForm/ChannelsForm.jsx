@@ -1,18 +1,20 @@
 import { Button, Form } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 export default function ChannelsForm({
   onClose, channels, onSubmit, editedId,
 }) {
   const channelsNames = channels.map(({ name }) => name);
   const name = channels.find(({ id }) => id === editedId)?.name || '';
+  const { t } = useTranslation();
   const schema = yup.object().shape({
     channelName: yup.string()
-      .required('Обязательное поле')
-      .notOneOf(channelsNames, 'Должно быть уникальным')
-      .min(3, 'От 3 до 20 символов')
-      .max(20, 'От 3 до 20 символов'),
+      .required(t('required'))
+      .notOneOf(channelsNames, t('hasToBeUnique'))
+      .min(3, t('symbolsCount'))
+      .max(20, t('symbolsCount')),
   });
   return (
     <Formik
@@ -53,14 +55,14 @@ export default function ChannelsForm({
                   variant="secondary"
                   onClick={onClose}
                 >
-                  Отменить
+                  {t('cancel')}
                 </Button>
                 <Button
                   variant="primary"
                   type="submit"
                   disabled={!!errors.channelName}
                 >
-                  Отправить
+                  {t('send')}
                 </Button>
               </div>
             </Form>

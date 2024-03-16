@@ -5,6 +5,7 @@ import {
   Button, Form, InputGroup,
 } from 'react-bootstrap';
 import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 import getMessages from './getMessages';
 import { messagesSelector } from './selectors';
 import { getNoun } from '../../shared/utils/getNoun';
@@ -25,6 +26,7 @@ export default function Messages({ channel }) {
   const schema = yup.object().shape({
     message: yup.string().required(),
   });
+  const { t } = useTranslation();
   return (
     <div className="d-flex flex-column h-100">
       <div className="bg-light mb-4 p-3 shadow-sm small">
@@ -55,7 +57,7 @@ export default function Messages({ channel }) {
                     type="text"
                     name="message"
                     className="border-0 p-0 ps-2"
-                    placeholder="Введите сообщение..."
+                    placeholder={t('typeMessage')}
                     value={values.message}
                     onChange={handleChange}
                     autoFocus
@@ -66,7 +68,7 @@ export default function Messages({ channel }) {
                     variant="outline-secondary"
                     disabled={!values.message && errors.message}
                   >
-                    Отправить
+                    {t('send')}
                   </Button>
                 </InputGroup>
               </Form.Group>

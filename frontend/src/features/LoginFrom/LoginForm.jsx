@@ -2,6 +2,7 @@ import { Formik } from 'formik';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import loginByUsername from './loginByUsername';
 import { loginFormActions } from './loginFormSlice';
 
@@ -12,6 +13,7 @@ export default function LoginForm() {
   });
   const dispatch = useDispatch();
   const error = useSelector((state) => state.loginForm.error);
+  const { t } = useTranslation();
   return (
     <Formik
       validationSchema={schema}
@@ -38,18 +40,18 @@ export default function LoginForm() {
               onSubmit={handleSubmit}
               className="col-12 col-md-6 mt-3 mt-mb-0"
             >
-              <h1 className="text-center mb-4"> Войти</h1>
+              <h1 className="text-center mb-4">{t('signIn')}</h1>
               <Form.Group>
                 <FloatingLabel
                   controlId="sign-in-username"
-                  label="Ваш ник"
+                  label={t('yourName')}
                   className="mb-3"
                 >
                   <Form.Control
                     autoFocus
                     type="text"
                     name="username"
-                    placeholder="Ваш ник"
+                    placeholder={t('yourName')}
                     value={values.username}
                     onChange={handleChangeWithReset}
                     isInvalid={!!error}
@@ -60,13 +62,13 @@ export default function LoginForm() {
               <Form.Group>
                 <FloatingLabel
                   controlId="sign-in-pass"
-                  label="Пароль"
+                  label={t('password')}
                   className="mb-3"
                 >
                   <Form.Control
                     type="password"
                     name="password"
-                    placeholder="Ваш ник"
+                    placeholder={t('password')}
                     value={values.password}
                     onChange={handleChangeWithReset}
                     isInvalid={!!error}
@@ -79,7 +81,7 @@ export default function LoginForm() {
                 </FloatingLabel>
               </Form.Group>
               <Button className="w-100 mb-3" variant="outline-primary" type="submit">
-                Войти
+                {t('signIn')}
               </Button>
             </Form>
           );

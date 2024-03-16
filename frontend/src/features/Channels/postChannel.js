@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import i18n from '../../shared/i18n/i18n';
 
 const postChannel = createAsyncThunk(
   'channels/postChannel',
@@ -7,11 +8,11 @@ const postChannel = createAsyncThunk(
     try {
       const response = await extra.api.post('/channels', channel);
       if (!response.data) {
-        throw new Error('Случилась ошибка');
+        throw new Error(i18n.t('errorHappened'));
       }
       return response.data;
     } catch (e) {
-      return rejectWithValue('Случилась ошибка');
+      return rejectWithValue(i18n.t('errorHappened'));
     }
   },
 );

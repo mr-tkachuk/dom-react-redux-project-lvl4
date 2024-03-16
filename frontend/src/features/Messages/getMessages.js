@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import i18n from '../../shared/i18n/i18n';
 
 const getMessages = createAsyncThunk(
   'messages/getMessages',
@@ -7,14 +8,11 @@ const getMessages = createAsyncThunk(
     try {
       const response = await extra.api.get('/messages');
       if (!response.data) {
-        throw new Error('Случилась ошибка');
+        throw new Error(i18n.t('errorHappened'));
       }
       return response.data;
     } catch (e) {
-      if (e.response.status === 401) {
-        return rejectWithValue('Неверные имя пользователя или пароль');
-      }
-      return rejectWithValue('Случилась ошибка');
+      return rejectWithValue(i18n.t('errorHappened'));
     }
   },
 );

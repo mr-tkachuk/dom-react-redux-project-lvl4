@@ -3,6 +3,7 @@ import {
 } from 'react-bootstrap';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import ChannelsForm from '../ChannelsForm/ChannelsForm';
 import updateChannel from '../../features/Channels/updateChannel';
 
@@ -13,6 +14,7 @@ export default function ChannelsList({
   const [showDelete, setShowDelete] = useState(false);
   const [shownChannelId, setShownChannelId] = useState(null);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   return (
     <>
       <ButtonGroup vertical>
@@ -42,7 +44,7 @@ export default function ChannelsList({
                     setShowDelete(true);
                   }}
                 >
-                  Удалить
+                  {t('remove')}
                 </Dropdown.Item>
                 <Dropdown.Item
                   eventKey="2"
@@ -51,7 +53,7 @@ export default function ChannelsList({
                     setShowEdit(true);
                   }}
                 >
-                  Переименовать
+                  {t('rename')}
                 </Dropdown.Item>
               </DropdownButton>
             </ButtonGroup>
@@ -74,7 +76,7 @@ export default function ChannelsList({
         onHide={() => setShowEdit(false)}
       >
         <Modal.Header className="h4" closeButton>
-          Переименовать канал
+          {t('renameChannel')}
         </Modal.Header>
         <Modal.Body>
           <ChannelsForm
@@ -93,16 +95,18 @@ export default function ChannelsList({
         onHide={() => setShowDelete(false)}
       >
         <Modal.Header className="h4" closeButton>
-          Удалить канал
+          {t('removeChannel')}
         </Modal.Header>
         <Modal.Body>
-          <p className="lead">Уверены?</p>
+          <p className="lead">
+            {t('sure')}
+          </p>
           <div className="d-flex justify-content-end gap-2">
             <Button
               variant="secondary"
               onClick={() => setShowDelete(false)}
             >
-              Отменить
+              {t('cancel')}
             </Button>
             <Button
               variant="danger"
@@ -111,7 +115,7 @@ export default function ChannelsList({
                 setShowDelete(false);
               }}
             >
-              Удалить
+              {t('remove')}
             </Button>
           </div>
         </Modal.Body>

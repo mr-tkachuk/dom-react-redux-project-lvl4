@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { userActions } from '../../entities/User/userSlice';
 import { AUTHORIZATION_DATA } from '../../shared/const/const';
+import i18n from '../../shared/i18n/i18n';
 
 const loginByUsername = createAsyncThunk(
   'login/loginByUsername',
@@ -11,14 +12,14 @@ const loginByUsername = createAsyncThunk(
       localStorage.setItem(AUTHORIZATION_DATA, JSON.stringify(response.data));
       dispatch(userActions.setAuthData(response.data));
       if (!response.data) {
-        throw new Error('Случилась ошибка');
+        throw new Error(i18n.t('errorHappened'));
       }
       return response.data;
     } catch (e) {
       if (e.response.status === 401) {
-        return rejectWithValue('Неверные имя пользователя или пароль');
+        return rejectWithValue(i18n.t('wrongCredentials'));
       }
-      return rejectWithValue('Случилась ошибка');
+      return rejectWithValue(i18n.t('errorHappened'));
     }
   },
 );
