@@ -59,6 +59,7 @@ export default function Messages({ channel }) {
                     name="message"
                     className="border-0 p-0 ps-2"
                     placeholder={t('typeMessage')}
+                    aria-label="Новое сообщение"
                     value={values.message}
                     onChange={handleChange}
                     autoFocus
