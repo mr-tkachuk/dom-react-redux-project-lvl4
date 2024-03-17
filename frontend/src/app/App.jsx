@@ -36,16 +36,14 @@ const router = createBrowserRouter([
   },
 ]);
 
-function App() {
-  return (
-    <RollbarProvider config={rollbarConfig}>
-      <ErrorBoundary>
-        <Provider store={store}>
-          <RouterProvider router={router} />
-        </Provider>
-      </ErrorBoundary>
-    </RollbarProvider>
-  );
-}
+const App = () => (
+  <RollbarProvider config={rollbarConfig}>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </ErrorBoundary>
+  </RollbarProvider>
+);
 
 export default App;

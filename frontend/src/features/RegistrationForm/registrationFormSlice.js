@@ -11,20 +11,26 @@ export const registrationFormSlice = createSlice({
   initialState,
   reducers: {
     resetError: (state) => {
+      // eslint-disable-next-line no-param-reassign
       state.error = '';
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(signUp.pending, (state) => {
+        // eslint-disable-next-line no-param-reassign
         state.error = undefined;
+        // eslint-disable-next-line no-param-reassign
         state.isLoading = true;
       })
       .addCase(signUp.fulfilled, (state) => {
+        // eslint-disable-next-line no-param-reassign
         state.isLoading = false;
       })
       .addCase(signUp.rejected, (state, action) => {
+        // eslint-disable-next-line no-param-reassign
         state.isLoading = false;
+        // eslint-disable-next-line no-param-reassign
         state.error = action.payload;
       });
   },

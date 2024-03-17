@@ -7,9 +7,9 @@ import { useTranslation } from 'react-i18next';
 import ChannelsForm from '../ChannelsForm/ChannelsForm';
 import updateChannel from '../../features/Channels/updateChannel';
 
-export default function ChannelsList({
+const ChannelsList = ({
   channels, active, setActive, remove,
-}) {
+}) => {
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [shownChannelId, setShownChannelId] = useState(null);
@@ -123,4 +123,6 @@ export default function ChannelsList({
       </Modal>
     </>
   );
-}
+};
+
+export default ChannelsList;

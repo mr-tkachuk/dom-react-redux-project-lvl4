@@ -6,7 +6,7 @@ import signup from './signup.jpg';
 import RegistrationForm from '../features/RegistrationForm/RegistrationForm';
 import { authDataSelector } from '../entities/User/selectors';
 
-export default function Registration() {
+const Registration = () => {
   const authData = useSelector(authDataSelector);
   const navigate = useNavigate();
   useEffect(() => {
@@ -26,4 +26,5 @@ export default function Registration() {
       </Card>
     </Container>
   );
-}
+};
+export default Registration;

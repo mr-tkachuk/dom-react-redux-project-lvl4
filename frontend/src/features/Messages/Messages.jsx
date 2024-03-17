@@ -7,18 +7,18 @@ import {
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import getMessages from './getMessages';
-import { messagesSelector } from './selectors';
-import { getNoun } from '../../shared/utils/getNoun';
+import messagesSelector from './selectors';
+import getNoun from '../../shared/utils/getNoun';
 import postMessage from './postMessage';
 import { authDataSelector } from '../../entities/User/selectors';
 import MessagesList from '../../entities/MessagesList/MessagesList';
 import filter from '../../shared/leoProfanity/leoProfanity';
 
-export default function Messages({ channel }) {
+const Messages = ({ channel }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMessages());
-  }, []);
+  }, [dispatch]);
   const messages = useSelector(messagesSelector);
   const { name, id: channelId } = channel || { name: '', id: '' };
   const { username } = useSelector(authDataSelector);
@@ -80,4 +80,5 @@ export default function Messages({ channel }) {
       </div>
     </div>
   );
-}
+};
+export default Messages;

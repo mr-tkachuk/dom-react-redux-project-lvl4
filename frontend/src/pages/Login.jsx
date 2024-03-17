@@ -7,7 +7,7 @@ import login from './login.jpeg';
 import LoginForm from '../features/LoginFrom/LoginForm';
 import { authDataSelector } from '../entities/User/selectors';
 
-export default function Login() {
+const Login = () => {
   const authData = useSelector(authDataSelector);
   const navigate = useNavigate();
   useEffect(() => {
@@ -34,4 +34,5 @@ export default function Login() {
       </Card>
     </Container>
   );
-}
+};
+export default Login;

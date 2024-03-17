@@ -7,7 +7,7 @@ import { userActions } from '../entities/User/userSlice';
 import { isMountedSelector } from '../entities/User/selectors';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function Root() {
+const Root = () => {
   const dispatch = useDispatch();
   const isMounted = useSelector(isMountedSelector);
 
@@ -26,4 +26,5 @@ export default function Root() {
         )
 
   );
-}
+};
+export default Root;

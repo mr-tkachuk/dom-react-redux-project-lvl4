@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { authDataSelector } from '../entities/User/selectors';
 import Chat from '../widgets/Chat/Chat';
 
-export default function Main() {
+const Main = () => {
   const authData = useSelector(authDataSelector);
   const navigate = useNavigate();
   useEffect(() => {
@@ -13,4 +13,6 @@ export default function Main() {
     }
   }, [authData]);
   return authData && (<Chat />);
-}
+};
+
+export default Main;

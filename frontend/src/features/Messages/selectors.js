@@ -1,1 +1,1 @@
-export const messagesSelector = (state) => state.messages.messages;
+export default (state) => state.messages.messages;

@@ -8,7 +8,7 @@ import { authDataSelector } from '../../entities/User/selectors';
 import { userActions } from '../../entities/User/userSlice';
 import filter from '../../shared/leoProfanity/leoProfanity';
 
-export default function Header() {
+const Header = () => {
   const authData = useSelector(authDataSelector);
   const dispatch = useDispatch();
   const { i18n, t } = useTranslation();
@@ -43,4 +43,5 @@ export default function Header() {
       </Container>
     </Navbar>
   );
-}
+};
+export default Header;

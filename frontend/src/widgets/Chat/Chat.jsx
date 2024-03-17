@@ -8,12 +8,12 @@ import Messages from '../../features/Messages/Messages';
 import { activeSelector } from '../../features/Channels/selectors';
 import { socketActions } from '../../shared/api/socketSlice';
 
-export default function Chat() {
+const Chat = () => {
   const activeChannel = useSelector(activeSelector);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(socketActions.initSocket());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">
@@ -27,4 +27,6 @@ export default function Chat() {
       </Row>
     </Container>
   );
-}
+};
+
+export default Chat;

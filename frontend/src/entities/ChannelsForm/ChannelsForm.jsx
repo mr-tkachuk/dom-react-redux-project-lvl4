@@ -4,9 +4,9 @@ import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import filter from '../../shared/leoProfanity/leoProfanity';
 
-export default function ChannelsForm({
+const ChannelsForm = ({
   onClose, channels, onSubmit, editedId,
-}) {
+}) => {
   const channelsNames = channels.map(({ name }) => name);
   const name = channels.find(({ id }) => id === editedId)?.name || '';
   const { t } = useTranslation();
@@ -79,4 +79,6 @@ export default function ChannelsForm({
         }
     </Formik>
   );
-}
+};
+
+export default ChannelsForm;

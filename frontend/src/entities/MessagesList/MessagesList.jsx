@@ -1,7 +1,6 @@
-export default function MessagesList({ messages }) {
-  return (
-    <div className="overflow-auto px-5">
-      {
+const MessagesList = ({ messages }) => (
+  <div className="overflow-auto px-5">
+    {
         messages
         && messages.map((message) => (
           <div
@@ -14,6 +13,6 @@ export default function MessagesList({ messages }) {
           </div>
         ))
       }
-    </div>
-  );
-}
+  </div>
+);
+export default MessagesList;

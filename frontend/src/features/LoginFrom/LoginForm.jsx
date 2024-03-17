@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import loginByUsername from './loginByUsername';
 import { loginFormActions } from './loginFormSlice';
 
-export default function LoginForm() {
+const LoginForm = () => {
   const schema = yup.object().shape({
     username: yup.string().required(),
     password: yup.string().required(),
@@ -89,4 +89,6 @@ export default function LoginForm() {
       }
     </Formik>
   );
-}
+};
+
+export default LoginForm;

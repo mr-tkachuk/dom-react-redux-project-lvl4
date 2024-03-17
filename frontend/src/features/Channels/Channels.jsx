@@ -12,7 +12,7 @@ import postChannel from './postChannel';
 import removeChannel from './removeChannel';
 import ChannelsForm from '../../entities/ChannelsForm/ChannelsForm';
 
-export default function Channels() {
+const Channels = () => {
   const dispatch = useDispatch();
   const channels = useSelector(channelsSelector);
   const active = useSelector(activeSelector);
@@ -57,4 +57,5 @@ export default function Channels() {
       </Modal>
     </>
   );
-}
+};
+export default Channels;

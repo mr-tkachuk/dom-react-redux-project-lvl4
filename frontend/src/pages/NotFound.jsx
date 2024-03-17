@@ -2,7 +2,7 @@ import { Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import Header from '../widgets/Header/Header';
 
-export default function NotFound() {
+const NotFound = () => {
   const { t } = useTranslation();
   return (
     <>
@@ -14,4 +14,5 @@ export default function NotFound() {
       </Container>
     </>
   );
-}
+};
+export default NotFound;

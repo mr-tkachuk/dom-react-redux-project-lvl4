@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import signUp from './signUp';
 
-export default function RegistrationForm() {
+const RegistrationForm = () => {
   const { t } = useTranslation();
   const schema = yup.object().shape({
     name: yup.string().required(t('required')).min(3, t('symbolsCount')).max(20, t('symbolsCount')),
@@ -116,4 +116,6 @@ export default function RegistrationForm() {
       }
     </Formik>
   );
-}
+};
+
+export default RegistrationForm;

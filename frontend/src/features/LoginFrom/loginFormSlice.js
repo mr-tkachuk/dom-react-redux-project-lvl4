@@ -11,20 +11,26 @@ export const loginFormSlice = createSlice({
   initialState,
   reducers: {
     resetError: (state) => {
+      // eslint-disable-next-line no-param-reassign
       state.error = '';
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(loginByUsername.pending, (state) => {
+        // eslint-disable-next-line no-param-reassign
         state.error = undefined;
+        // eslint-disable-next-line no-param-reassign
         state.isLoading = true;
       })
       .addCase(loginByUsername.fulfilled, (state) => {
+        // eslint-disable-next-line no-param-reassign
         state.isLoading = false;
       })
       .addCase(loginByUsername.rejected, (state, action) => {
+        // eslint-disable-next-line no-param-reassign
         state.isLoading = false;
+        // eslint-disable-next-line no-param-reassign
         state.error = action.payload;
       });
   },
