@@ -32,7 +32,7 @@ export default function ChannelsList({
               </Button>
               <DropdownButton
                 as={ButtonGroup}
-                title=""
+                title={t('channelManaging')}
                 id="bg-nested-dropdown"
                 variant={channel.id === active.id ? 'secondary' : ''}
                 className="d-flex"

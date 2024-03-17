@@ -32,5 +32,6 @@ export default {
     channelRenamed: 'Канал переименован',
     channelRemoved: 'Канал удалён',
     channelName: 'Имя канала',
+    channelManaging: 'Управление каналом',
   },
 };
