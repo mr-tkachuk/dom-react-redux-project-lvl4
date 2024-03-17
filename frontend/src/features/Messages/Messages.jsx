@@ -12,6 +12,7 @@ import { getNoun } from '../../shared/utils/getNoun';
 import postMessage from './postMessage';
 import { authDataSelector } from '../../entities/User/selectors';
 import MessagesList from '../../entities/MessagesList/MessagesList';
+import filter from '../../shared/leoProfanity/leoProfanity';
 
 export default function Messages({ channel }) {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ export default function Messages({ channel }) {
           validationSchema={schema}
           initialValues={{ message: '' }}
           onSubmit={({ message: body }, { resetForm }) => {
-            dispatch(postMessage({ body, channelId, username }));
+            dispatch(postMessage({ body: filter.clean(body), channelId, username }));
             resetForm();
           }}
         >

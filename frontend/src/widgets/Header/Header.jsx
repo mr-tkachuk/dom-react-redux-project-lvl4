@@ -6,11 +6,16 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { authDataSelector } from '../../entities/User/selectors';
 import { userActions } from '../../entities/User/userSlice';
+import filter from '../../shared/leoProfanity/leoProfanity';
 
 export default function Header() {
   const authData = useSelector(authDataSelector);
   const dispatch = useDispatch();
   const { i18n, t } = useTranslation();
+  const changeLang = (lang) => {
+    i18n.changeLanguage(lang);
+    filter.loadDictionary(lang);
+  };
   return (
     <Navbar className="bg-white shadow-sm" expand="lg">
       <Container>
@@ -23,8 +28,8 @@ export default function Header() {
           </Link>
         </Navbar.Brand>
         <ButtonGroup>
-          <Button onClick={() => i18n.changeLanguage('ru')}>Ru</Button>
-          <Button onClick={() => i18n.changeLanguage('en')}>En</Button>
+          <Button onClick={() => changeLang('ru')}>Ru</Button>
+          <Button onClick={() => changeLang('en')}>En</Button>
         </ButtonGroup>
         { authData
             && (

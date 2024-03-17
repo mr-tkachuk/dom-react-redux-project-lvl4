@@ -2,6 +2,7 @@ import { Button, Form } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
+import filter from '../../shared/leoProfanity/leoProfanity';
 
 export default function ChannelsForm({
   onClose, channels, onSubmit, editedId,
@@ -16,11 +17,12 @@ export default function ChannelsForm({
       .min(3, t('symbolsCount'))
       .max(20, t('symbolsCount')),
   });
+
   return (
     <Formik
       validationSchema={schema}
       onSubmit={({ channelName }) => {
-        onSubmit({ name: channelName });
+        onSubmit({ name: filter.clean(channelName) });
       }}
       initialValues={{
         channelName: name,
