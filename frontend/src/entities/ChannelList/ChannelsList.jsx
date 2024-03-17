@@ -62,6 +62,7 @@ export default function ChannelsList({
               key={channel.id}
               variant={channel.id === active.id ? 'secondary' : ''}
               onClick={() => setActive(channel)}
+              name={channel.name}
               className="w-100 rounded-0 text-start text-truncate"
             >
               #
