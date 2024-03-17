@@ -38,10 +38,17 @@ export default function ChannelsForm({
                 onClose();
               }}
             >
-              <Form.Group controlId="channelsName">
+              <Form.Group>
+                <Form.Label
+                  htmlFor="channelName"
+                >
+                  {t('channelName')}
+                </Form.Label>
                 <Form.Control
                   type="text"
                   name="channelName"
+                  id="channelName"
+                  placeholder={t('channelName')}
                   value={values.channelName}
                   onChange={handleChange}
                   isInvalid={!!errors.channelName}

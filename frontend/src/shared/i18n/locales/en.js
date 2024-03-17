@@ -31,5 +31,6 @@ export default {
     channelCreated: 'Channel created!',
     channelRenamed: 'Channel renamed',
     channelRemoved: 'Channel removed',
+    channelName: 'Channel name',
   },
 };
