@@ -15,7 +15,7 @@ export default {
     signIn: 'Войти',
     yourName: 'Ваш ник',
     password: 'Пароль',
-    confirmPassword: 'Повторите пароль',
+    confirmPassword: 'Подтвердите пароль',
     notFound: 'Страница не существует',
     required: 'Обязательное поле',
     symbolsCount: 'От 3 до 20 символов',
