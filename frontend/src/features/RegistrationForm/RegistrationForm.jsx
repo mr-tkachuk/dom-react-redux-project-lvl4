@@ -39,7 +39,7 @@ export default function RegistrationForm() {
           >
             <h1 className="text-center mb-4">{t('signUp')}</h1>
             <Form.Group
-              controlId="sign-up-name"
+              controlId="name"
               className="position-relative mb-3"
             >
               <FloatingLabel
@@ -59,7 +59,7 @@ export default function RegistrationForm() {
               </FloatingLabel>
             </Form.Group>
             <Form.Group
-              controlId="sign-up-password"
+              controlId="password"
               className="position-relative mb-3"
             >
               <FloatingLabel
@@ -81,7 +81,7 @@ export default function RegistrationForm() {
               </FloatingLabel>
             </Form.Group>
             <Form.Group
-              controlId="sign-up-confirm-password"
+              controlId="confirmPassword"
               className="position-relative mb-3"
             >
               <FloatingLabel
