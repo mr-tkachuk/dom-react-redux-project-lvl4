@@ -1,9 +1,11 @@
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
 import Header from '../widgets/Header/Header';
 import { userActions } from '../entities/User/userSlice';
 import { isMountedSelector } from '../entities/User/selectors';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Root() {
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ export default function Root() {
         && (
         <div className="d-flex flex-column h-100">
           <Header />
+          <ToastContainer />
           <Outlet />
         </div>
         )

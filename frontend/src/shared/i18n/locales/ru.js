@@ -24,9 +24,12 @@ export default {
     username: 'Имя пользователя',
     typeMessage: 'Введите сообщение...',
     wrongCredentials: 'Неверные имя пользователя или пароль',
-    errorHappened: 'Случилась ошибка',
+    errorHappened: 'Ошибка соединения',
     alreadyExistUser: 'Такой пользователь уже существует',
     hasToBeUnique: 'Должно быть уникальным',
     sure: 'Уверены?',
+    channelCreated: 'Канал создан',
+    channelRenamed: 'Канал переименован',
+    channelRemoved: 'Канал удалён',
   },
 };

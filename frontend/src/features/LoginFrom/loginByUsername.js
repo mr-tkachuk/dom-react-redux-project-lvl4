@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import { userActions } from '../../entities/User/userSlice';
 import { AUTHORIZATION_DATA } from '../../shared/const/const';
 import i18n from '../../shared/i18n/i18n';
@@ -19,6 +20,9 @@ const loginByUsername = createAsyncThunk(
       if (e.response.status === 401) {
         return rejectWithValue(i18n.t('wrongCredentials'));
       }
+      toast(i18n.t('errorHappened'), {
+        type: 'error',
+      });
       return rejectWithValue(i18n.t('errorHappened'));
     }
   },

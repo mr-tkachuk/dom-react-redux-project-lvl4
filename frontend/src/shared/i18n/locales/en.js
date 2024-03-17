@@ -24,9 +24,12 @@ export default {
     username: 'Username',
     typeMessage: 'Type your message...',
     wrongCredentials: 'Wrong username or password',
-    errorHappened: 'Errors happened',
+    errorHappened: 'Connection error',
     alreadyExistUser: 'Username already exists',
     hasToBeUnique: 'Has to be unique',
     sure: 'Are you sure?',
+    channelCreated: 'Channel created!',
+    channelRenamed: 'Channel renamed',
+    channelRemoved: 'Channel removed',
   },
 };
